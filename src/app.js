@@ -31,13 +31,13 @@ app.get("/repositories", (request, response) => {
 app.post("/repositories", (request, response) => {
   const { title, url, techs } = request.body
 
-  if(!url.includes('github.com/')){
+  if (!url.includes('github.com/')) {
     return response.status(400).json({
       error: 'URL is not from GitHub.'
     })
   }
 
-  if(!Array.isArray(techs)){
+  if (!Array.isArray(techs)) {
     return response.status(400).json({
       error: '"techs" should be an array.'
     })
@@ -106,9 +106,9 @@ app.post("/repositories/:id/like", (request, response) => {
 
   repositories[repoIndex] = repo
 
-  return response.json(
-    repositories[repoIndex]
-  )
+  return response.json({
+    likes: repo.likes
+  })
 });
 
 module.exports = app;
